@@ -7,13 +7,24 @@ To run the server simple execute the binary on the same machine that is running 
 
 # Documentation
 
-Since webvirt is built with FastAPI, the documentation is accessible at `/docs` (Swagger UI) or `/redoc` (ReDoc). For example, with the default port/address: `http://localhost:5000/docs`.
+Since webvirt is built with FastAPI, the full documentation is accessible at `/docs` (Swagger UI) or `/redoc` (ReDoc). For example, with the default port/address: `http://localhost:5000/docs`.
 
-## Attach and Detach XML
+## Endpoints
 
-The only endpoint that might need more explaining is the attach and detach endponts. When running webvirt, there should be a directory next to the binary (or python file), `devices/`. This directory contains XML files that are used to define host devices to be attached. They work the same as they do with libvirt normally with one exception; an XML file under `devices/` can contain variables which start with a '$' and contain all uppercase letters. The values for these variables are set by the query parameters of the GET request.
+Method | Endpoint | Action
+--- | --- | ---
+GET | /api​/0​/state​/{domain} | Get domain state
+GET | /api​/0​/start​/{domain} | Start domain
+GET | ​/api​/0​/shutdown​/{domain} | Shutdown domain
+GET | /api​/0​/attach​/{domain}​/{xml_name} | Attach host device
+GET | /api​/0​/detach​/{domain}​/{xml_name} | Detach host device
+GET | /api​/0​/version | Get API version
 
-### Example
+### Attach and Detach
+
+Most endpoints are rather self-explanatory, with the exception of the attach and detach endpoints. When running webvirt, there should be a directory next to the binary (or python file) named `devices/`. This directory contains XML files that are used to define host devices to be attached. They work the same as they do with libvirt normally with one exception; an XML file under `devices/` can contain variables which start with a '$' and contain all uppercase letters. The values for these variables are set by the query parameters of the GET request.
+
+#### Example
 With the following `usb.xml` file:
 ```xml
 <hostdev mode='subsystem' type='usb' managed='yes'>
@@ -49,7 +60,7 @@ If you wanted to create an endpoint for this specific USB device (without any va
 Then to attach this device, simple make a GET request to `/api/0/attach/{domain}/specific_usb_device`
 
 
-### Variable Names 
+#### Variable Names 
 
 Variable names are arbitrary and can be anything (although they should be URI-safe). For example:
 
