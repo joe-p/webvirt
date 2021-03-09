@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 import argparse
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
 parser = argparse.ArgumentParser(
     prog='webvirt', description='A webserver serving a REST-inspired API for managing libvirt virtual machines')
@@ -122,7 +122,7 @@ async def read_item(domain, xml_name, request: Request):
 
 
 @api.get(
-    "/api/0/attach/{domain}/{xml_name}",
+    "/api/0/detach/{domain}/{xml_name}",
     summary='Detach host device',
     description='Detach a host device by using an XML template under devices/. Query parameters for variable substitution'
 )
