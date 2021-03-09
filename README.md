@@ -6,8 +6,9 @@ To run the server simple execute the binary on the same machine that is running 
 **DO NOT RUN THIS ON A PUBLIC-FACING PORT!** As it stands, webvirt has no authentication or authorization built in. It is recommended to only expose webvirt to a trusted local network. If you really need authentication or authorization, use a web server with proper middleware. 
 
 # Documentation
+The full documentation for the latest version (master branch) can be seen at https://joe-p.github.io/webvirt-redoc/.
 
-Since webvirt is built with FastAPI, the full documentation is accessible at `/docs` (Swagger UI) or `/redoc` (ReDoc). For example, with the default port/address: `http://localhost:5000/docs`.
+Since webvirt is built with FastAPI, the full documentation for the version you are running is accessible at `/docs` (Swagger UI) or `/redoc` (ReDoc). For example, with the default port/address: `http://localhost:5000/docs`.
 
 ## Endpoints
 
